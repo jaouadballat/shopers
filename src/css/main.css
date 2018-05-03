@@ -1,0 +1,114 @@
+:root{
+    --primary-color:#FFF;
+    --secondary-color:#3392ff;
+    --background-color:#f9fafe;
+    --border-color:#e3eaf0;
+    --filter-color:#c7dffb;
+    --tag-color:#97aec7;
+    --font-color:#7e8a95;
+    --title-color:#1e2638;
+    --valid-color:#32bf73;
+    --warning-color:#fe9b3b;
+    --error-color:#f14c5d;
+    --placeholder-color:#bdcbd9;
+    --azure-color:#0077FF;
+    --dark-color:#19193E;
+    --grey-color:#637280;
+    --button-color:#95acc6;
+    
+    --titles-size:1.3em;
+    --sub-titles-size:1.1em;
+    --normal-size:1em;
+    --small-size:.9em;
+    --border-radius:3px;
+
+    --font:'Product Sans', Arial, Helvetica, sans-serif;
+
+    --box-shadow:0 1px 1px -1px rgba(0, 0, 0, .3);
+    --transition:.2s;
+}
+
+*{box-sizing:border-box;}
+
+html, body{
+    margin:0;
+    padding:0;
+    font-family:var(--font);
+    outline:none;
+    background:var(--background-color);
+}
+
+a {
+    background-color: transparent;
+    text-decoration:none;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    line-height:56px;
+    background:var(--primary-color);
+    box-shadow:var(--box-shadow);
+}
+
+.nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.nav__logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav__title{
+    font-weight:600;
+    padding-right:32px;
+    display:block;
+    color:var(--secondary-color);
+}
+
+.svg__logo{
+    width:26px;
+    fill:var(--secondary-color);
+    margin:auto 16px;
+}
+
+.nav__tab{
+    padding:0 16px;
+    display:block;
+    color:var(--font-color);
+}
+
+.nav__tab:hover{
+    color:var(--secondary-color);
+    background:var(--background-color);
+    transition:var(--transition);
+}
+
+.nav__tab_current{
+    border-bottom:solid 1px var(--secondary-color);
+    color:var(--secondary-color);
+}
+
+.main{
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    max-width:1000px;
+    width:100%;
+    margin:16px auto;
+    border:dashed 1px;
+}
+
+.main__title{
+    width:100%;
+    font-size:var(--sub-titles-size);
+    color:var(--title-color);
+    text-transform:uppercase;
+}
