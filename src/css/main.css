@@ -48,9 +48,7 @@ a {
     text-decoration:none;
 }
 
-img{
-    max-width:100%;
-}
+img{max-width:100%;}
 
 nav{
     display:flex;
@@ -177,9 +175,7 @@ nav{
     margin-right:8px;
 }
 
-.filter__button:last-child{
-    margin-right:0px;
-}
+.filter__button:last-child{margin-right:0px;}
 
 .filter__button:hover, .filter__button_active {
     background:var(--filter-color);
@@ -199,6 +195,9 @@ nav{
     fill:var(--font-color);
     margin-right: 8px;
 }
+
+.svg__card_is-liked{fill:var(--secondary-color);}
+.svg__card_is-disliked{fill:var(--error-color);}
 
 .card{
     display: flex;
@@ -239,39 +238,38 @@ nav{
     cursor: pointer;
 }
 
-.card__button:last-child{
-    border-right: none;
-}
+.card__button:last-child{border-right: none;}
 
 .card__button:hover{
     background:var(--background-color);
     color:var(--secondary-color);
-    fill:var(--secondary-color);
     transition:var(--transition);
 }
 
 .card__button_dislike:hover{
     color:var(--error-color);
-    fill:var(--error-color);
     transition:var(--transition);
 }
 
-@media screen and (max-width: 1000px) {
+.card__button_is-liked{color:var(--secondary-color);}
+.card__button_is-disliked{color:var(--error-color);}
+
+@media screen and (max-width: 1000px){
     .main{padding:0 16px;}
     .card__container{grid-template-columns:repeat(3, 1fr);}
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 740px){
     .card__container{grid-template-columns:repeat(2, 1fr);}
     .svg__menu{display:block;}
     .nav__tab{display:none;}
 }
 
-@media screen and (max-width: 490px) {
+@media screen and (max-width: 490px){
     .card__container{grid-template-columns:repeat(1, 1fr);}
 }
 
-.side-nav {
+.side-nav{
     position: fixed;
     left: 0;
     top: 0;
@@ -281,11 +279,9 @@ nav{
     pointer-events: none;
 }
 
-.side-nav--visible {
-    pointer-events: auto;
-}
+.side-nav--visible{pointer-events: auto;}
 
-.side-nav::before {
+.side-nav::before{
     content: '';
     display: block;
     position: absolute;
@@ -299,7 +295,7 @@ nav{
     transition: opacity 0.3s cubic-bezier(0,0,0.3,1);
 }
 
-.side-nav__container {
+.side-nav__container{
     position: relative;
     width: 90%;
     max-width: 400px;
@@ -313,23 +309,19 @@ nav{
     will-change: transform;
 }
 
-.side-nav--animatable .side-nav__container {
+.side-nav--animatable .side-nav__container{
     transition: transform 0.13s cubic-bezier(0,0,0.3,1);
 }
 
-.side-nav--visible.side-nav--animatable .side-nav__container {
+.side-nav--visible.side-nav--animatable .side-nav__container{
     transition: transform 0.33s cubic-bezier(0,0,0.3,1);
 }
 
-.side-nav--visible::before {
-    opacity: 1;
-}
+.side-nav--visible::before{opacity: 1;}
 
-.side-nav--visible .side-nav__container {
-    transform: none;
-}
+.side-nav--visible .side-nav__container{transform: none;}
 
-.side-nav__hide {
+.side-nav__hide{
     position: absolute;
     left: 16px;
     top: 16px;
@@ -342,7 +334,7 @@ nav{
     margin: 0;
 }
 
-.side-nav__header {
+.side-nav__header{
     width:100%;
     height: 200px;
     background: var(--secondary-color);
@@ -353,7 +345,7 @@ nav{
     font-size: 24px;
 }
 
-.side-nav__content {
+.side-nav__content{
     width:100%;
     padding-top: 32px;
     flex: 1;
@@ -365,13 +357,13 @@ nav{
     -webkit-overflow-scrolling: touch;
 }
 
-.side-nav__content li {
+.side-nav__content li{
     height: 48px;
     line-height: 48px;
     padding: 0 16px;
 }
 
-.side-nav__content li:hover {
+.side-nav__content li:hover{
     background: var(--filter-color);
     transition:var(--transition);
 }

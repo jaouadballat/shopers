@@ -199,6 +199,14 @@ nav {
   margin-right: 8px;
 }
 
+.svg__card_is-liked {
+  fill: var(--secondary-color);
+}
+
+.svg__card_is-disliked {
+  fill: var(--error-color);
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -243,14 +251,20 @@ nav {
 .card__button:hover {
   background: var(--background-color);
   color: var(--secondary-color);
-  fill: var(--secondary-color);
   transition: var(--transition);
 }
 
 .card__button_dislike:hover {
   color: var(--error-color);
-  fill: var(--error-color);
   transition: var(--transition);
+}
+
+.card__button_is-liked {
+  color: var(--secondary-color);
+}
+
+.card__button_is-disliked {
+  color: var(--error-color);
 }
 
 @media screen and (max-width:1000px) {
