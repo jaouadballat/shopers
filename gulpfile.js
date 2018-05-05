@@ -1,7 +1,6 @@
 'use strict';
 
 const gulp = require('gulp');
-const nodemon = require('gulp-nodemon');
 const watch = require('gulp-watch');
 const concat_js = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
@@ -23,15 +22,7 @@ gulp.task('js', _ => {
         .pipe(gulp.dest('public/js'));
 });
 
-gulp.task('start', _ => {
-    nodemon({
-        script: './bin/www',
-        ext: 'js css ejs',
-        tasks: ['default']
-    });
-});
-
-gulp.task('default', ['css', 'js', 'start'], _ => {
+gulp.task('default', ['css', 'js'], _ => {
     gulp.watch('src/**/*.css', _ => gulp.run('css'));
     gulp.watch('src/**/*.js', _=> gulp.run('js'));
 });

@@ -15,17 +15,17 @@ class Card {
 		this._cards.forEach(card => {
 			const the_buttons = Array.from(card.querySelectorAll('.card__button'));
 			
-			this._handleCard(the_buttons);
+			this._handleCard(the_buttons, card);
 		});
 	}
 
-	_handleCard(buttons) {
+	_handleCard(buttons, card) {
 		buttons.forEach(button => {
-			button.addEventListener('click', _ => this._toggleCardButton(button, buttons));
+			button.addEventListener('click', _ => this._toggleCardButton(button, buttons, card));
 		});
 	}
 
-	_toggleCardButton(current_button, buttons) {
+	_toggleCardButton(current_button, buttons, card) {
 		if (current_button.classList.contains('card__button_dislike')) {
 			if (current_button.classList.contains('card__button_is-disliked')) {
 				current_button.classList.remove('card__button_is-disliked');
@@ -41,12 +41,10 @@ class Card {
 					}
 				});
 
-				//get the url and get the page out of it.
-				//then replace the current page content with the new content.
+				//add the feedback to the database
 				const url = current_button.getAttribute('data-href');
-				//new FetchPage(url, container);
 			}
-		} else {
+		} else if (current_button.classList.contains('card__button_like')) {
 			if (current_button.classList.contains('card__button_is-liked')) {
 				current_button.classList.remove('card__button_is-liked');
 				current_button.querySelector('svg').classList.remove('svg__card_is-liked');
@@ -61,11 +59,12 @@ class Card {
 					}
 				});
 
-				//get the url and get the page out of it.
-				//then replace the current page content with the new content.
+				//add the feedback to the database
 				const url = current_button.getAttribute('data-href');
-				//new FetchPage(url, container);
 			}
+		} else {
+			card.classList.add('card__is-removed');
+			setTimeout(_ => card.classList.add('hidden'), 400)
 		}
 	}
 }

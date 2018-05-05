@@ -1,0 +1,18 @@
+<%- include _layouts/header.ejs %>
+	<div class="login__container">
+		<div class="card form__card">
+			<div class="form__header">Log In</div>
+			<form class="form__container" action="" method="post">
+				<input type="email" name="email" class="input form__input" placeholder="Your Email">
+				<input type="password" name="password" class="input form__input" placeholder="Your Password">
+
+				<input type="submit" name="submit" class="button form__button">
+			</form>
+
+			<div class="form__option option__text">
+				<p>Don't have an account yet?</p>
+				<a class="fetch" href="./signup">Sign Up</a>
+			</div>
+		</div>
+	</div>
+<%- include _layouts/footer.ejs %>

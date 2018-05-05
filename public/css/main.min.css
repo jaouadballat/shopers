@@ -1,3 +1,15 @@
+@keyframes removed-item-animation {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
 :root {
   --primary-color: #FFF;
   --secondary-color: #3392ff;
@@ -254,17 +266,101 @@ nav {
   transition: var(--transition);
 }
 
-.card__button_dislike:hover {
+.card__button_dislike:hover,
+.card__button_remove:hover {
   color: var(--error-color);
   transition: var(--transition);
 }
 
-.card__button_is-liked {
+.card__button_is-liked,
+.form__option a {
   color: var(--secondary-color);
 }
 
 .card__button_is-disliked {
   color: var(--error-color);
+}
+
+.form__header,
+.login__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__container {
+  width: 100%;
+  height: 90vh;
+}
+
+.form__header {
+  font-size: var(--titles-size);
+  font-weight: 600;
+  color: var(--title-color);
+  text-transform: uppercase;
+  padding-bottom: 16px;
+}
+
+.form__card {
+  width: 40vw;
+  padding: 26px;
+}
+
+.form__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.input {
+  padding: 16px;
+  border: solid .5px var(--border-color);
+  border-radius: 3px;
+  font-size: var(--small-size);
+  color: var(--font-color);
+}
+
+.form__input,
+.input {
+  margin-bottom: 16px;
+}
+
+.button {
+  border: 0;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  border-radius: 3px;
+  font-size: var(--small-size);
+  font-weight: 600;
+}
+
+.form__button {
+  padding: 16px;
+}
+
+.form__option {
+  padding-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.option__text {
+  font-size: var(--small-size);
+  font-weight: 600;
+}
+
+.form__option p {
+  margin-right: 5px;
+  color: var(--dark-color);
+}
+
+.card__is-removed {
+  animation: removed-item-animation .3s cubic-bezier(.55,-.04,.91,.94) forwards;
+}
+
+.hidden {
+  display: none;
 }
 
 @media screen and (max-width:1000px) {
@@ -274,6 +370,10 @@ nav {
 
   .card__container {
     grid-template-columns: repeat(3,1fr);
+  }
+
+  .form__card {
+    width: 50vw;
   }
 }
 
@@ -289,11 +389,19 @@ nav {
   .nav__tab {
     display: none;
   }
+
+  .form__card {
+    width: 70vw;
+  }
 }
 
 @media screen and (max-width:490px) {
   .card__container {
     grid-template-columns: repeat(1,1fr);
+  }
+
+  .form__card {
+    width: 90vw;
   }
 }
 
