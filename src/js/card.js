@@ -13,35 +13,61 @@ class Card {
 
 	_addEventListener() {
 		this._cards.forEach(card => {
-			card.addEventListener('click', _ => {
-				const dislike_button = card.querySelector('.card__button_dislike');
-				const like_button = card.querySelector('.card__button_like');
-				const dislike_svg = card.querySelectorAll('svg')[0];
-				const like_svg = card.querySelectorAll('svg')[1];
-
-				const current_card = {
-					dislike_button: dislike_button,
-					like_button: like_button,
-					dislike_svg: dislike_svg,
-					like_svg: like_svg
-				};
-
-				this._handleCard(current_card);
-			})
+			const the_buttons = Array.from(card.querySelectorAll('.card__button'));
+			
+			this._handleCard(the_buttons);
 		});
 	}
 
-	_handleCard(current_card) {
-		current_card.dislike_button.addEventListener('click', _ => {
-			this._toggleCardButton(current_card);
-		});
-
-		current_card.like_button.addEventListener('click', _ => {
-			this._toggleCardButton(current_card);
+	_handleCard(buttons) {
+		buttons.forEach(button => {
+			button.addEventListener('click', _ => this._toggleCardButton(button, buttons));
 		});
 	}
 
-	_toggleCardButton(button, svg) {}
+	_toggleCardButton(current_button, buttons) {
+		if (current_button.classList.contains('card__button_dislike')) {
+			if (current_button.classList.contains('card__button_is-disliked')) {
+				current_button.classList.remove('card__button_is-disliked');
+				current_button.querySelector('svg').classList.remove('svg__card_is-disliked');
+			} else {
+				current_button.classList.add('card__button_is-disliked');
+				current_button.querySelector('svg').classList.add('svg__card_is-disliked');
+
+				buttons.forEach(button =>  {
+					if (button !== current_button) {
+						button.classList.remove('card__button_is-liked');
+						button.querySelector('svg').classList.remove('svg__card_is-liked');
+					}
+				});
+
+				//get the url and get the page out of it.
+				//then replace the current page content with the new content.
+				const url = current_button.getAttribute('data-href');
+				//new FetchPage(url, container);
+			}
+		} else {
+			if (current_button.classList.contains('card__button_is-liked')) {
+				current_button.classList.remove('card__button_is-liked');
+				current_button.querySelector('svg').classList.remove('svg__card_is-liked');
+			} else {
+				current_button.classList.add('card__button_is-liked');
+				current_button.querySelector('svg').classList.add('svg__card_is-liked');
+
+				buttons.forEach(button =>  {
+					if (button !== current_button) {
+						button.classList.remove('card__button_is-disliked');
+						button.querySelector('svg').classList.remove('svg__card_is-disliked');
+					}
+				});
+
+				//get the url and get the page out of it.
+				//then replace the current page content with the new content.
+				const url = current_button.getAttribute('data-href');
+				//new FetchPage(url, container);
+			}
+		}
+	}
 }
 
 new Card();
