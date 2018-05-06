@@ -3,7 +3,14 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const bodyParser = require('body-parser');
+
+const mongoose = require('mongoose');
+const Store = require('connect-mongo')(session);
+const db_uri = require('./api/model/db');
+
+const api = require('./api/routes/index');
 
 const index = require('./routes/index');
 const favorit = require('./routes/favorit');
@@ -18,11 +25,24 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+app.use(session({
+	secret: 'shopers',
+	resave: true,
+	saveUninitialized: false,
+	store: new Store({
+		url: db_uri,
+    	ttl: 14 * 24 * 60 * 60 // = 14 days
+	})
+}));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api', api);
 
 app.use('/', index);
 app.use('/favorit', favorit);

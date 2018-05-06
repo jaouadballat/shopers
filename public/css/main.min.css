@@ -356,7 +356,7 @@ nav {
 }
 
 .card__is-removed {
-  animation: removed-item-animation .3s cubic-bezier(.55,-.04,.91,.94) forwards;
+  animation: removed-item-animation .33s cubic-bezier(.55,-.04,.91,.94) forwards;
 }
 
 .hidden {
