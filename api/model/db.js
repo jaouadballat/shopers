@@ -45,6 +45,6 @@ process.on('SIGTERM', _ => {
 
 // BRING IN YOUR SCHEMAS & MODELS
 const users = require('./users');
-//const shops = reqiure('./shops');
+const shops = require('./shops');
 
 module.exports = db_uri;
