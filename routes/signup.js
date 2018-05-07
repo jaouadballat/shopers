@@ -1,9 +1,9 @@
 'use strict';
 
 const router = require('express').Router();
-//const signup = require('../controller/signup');
+const signup = require('../controllers/signup');
 
 router.route('/')
-	.get((req, res) => res.render('signup'));
+	.get(signup);
 
 module.exports = router;

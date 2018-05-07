@@ -8,16 +8,26 @@ const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 const Store = require('connect-mongo')(session);
-const db_uri = require('./api/model/db');
+const db = require('./api/model/db');
 
 const api = require('./api/routes/index');
-
 const index = require('./routes/index');
 const favorit = require('./routes/favorit');
 const login = require('./routes/login');
 const signup = require('./routes/signup');
 
 const app = express();
+
+//app.use(cookieParser());
+app.use(session({
+	secret: 'keyboard cat',
+	resave: true,
+	saveUninitialized: false,
+	cookie: { domain: '' },
+	store: new Store({
+		mongooseConnection: db
+	})
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,45 +36,33 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-app.use(session({
-	secret: 'shopers',
-	resave: true,
-	saveUninitialized: false,
-	store: new Store({
-		url: db_uri,
-    	ttl: 14 * 24 * 60 * 60 // = 14 days
-	})
-}));
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', api);
-
-app.use('/', index);
 app.use('/favorit', favorit);
 app.use('/login', login);
 app.use('/signup', signup);
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+	const err = new Error('Not Found');
+	err.status = 404;
+	next(err);
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+	// render the error page
+	res.status(err.status || 500);
+	res.render('error');
 });
 
 module.exports = app;

@@ -1,80 +1,10 @@
-<div class="card" data-shop="">
-    <div class="card__title">Shop name</div>
-    <img src="./images/shop1.jpg" alt="shop image">
+<div class="card" data-shop="<%= shop._id %>">
+    <div class="card__title"><%= shop.name%></div>
+    <img src="/images/<%= shop.picture %>" alt="<%= shop.name%> image">
     <div class="card__buttons">
-        <button data-href="" class="card__button card__button_dislike">
+        <button data-href="/api/shop/dislike" class="card__button card__button_dislike">
             <%- include dislike.ejs %> Dislike</button>
-        <button data-href="" class="card__button card__button_like">
-            <%- include like.ejs %> Like</button>
-    </div>
-</div>
-<div class="card">
-    <div class="card__title">Shop name</div>
-    <img src="./images/shop1.jpg" alt="shop image">
-    <div class="card__buttons">
-        <button data-href="" class="card__button card__button_dislike">
-            <%- include dislike.ejs %> Dislike</button>
-        <button data-href="" class="card__button card__button_like">
-            <%- include like.ejs %> Like</button>
-    </div>
-</div>
-<div class="card">
-    <div class="card__title">Shop name</div>
-    <img src="./images/shop1.jpg" alt="shop image">
-    <div class="card__buttons">
-        <button data-href="" class="card__button card__button_dislike">
-            <%- include dislike.ejs %> Dislike</button>
-        <button data-href="" class="card__button card__button_like">
-            <%- include like.ejs %> Like</button>
-    </div>
-</div>
-<div class="card">
-    <div class="card__title">Shop name</div>
-    <img src="./images/shop1.jpg" alt="shop image">
-    <div class="card__buttons">
-        <button data-href="" class="card__button card__button_dislike">
-            <%- include dislike.ejs %> Dislike</button>
-        <button data-href="" class="card__button card__button_like">
-            <%- include like.ejs %> Like</button>
-    </div>
-</div>
-<div class="card">
-    <div class="card__title">Shop name</div>
-    <img src="./images/shop1.jpg" alt="shop image">
-    <div class="card__buttons">
-        <button data-href="" class="card__button card__button_dislike">
-            <%- include dislike.ejs %> Dislike</button>
-        <button data-href="" class="card__button card__button_like">
-            <%- include like.ejs %> Like</button>
-    </div>
-</div>
-<div class="card">
-    <div class="card__title">Shop name</div>
-    <img src="./images/shop1.jpg" alt="shop image">
-    <div class="card__buttons">
-        <button data-href="" class="card__button card__button_dislike">
-            <%- include dislike.ejs %> Dislike</button>
-        <button data-href="" class="card__button card__button_like">
-            <%- include like.ejs %> Like</button>
-    </div>
-</div>
-<div class="card">
-    <div class="card__title">Shop name</div>
-    <img src="./images/shop1.jpg" alt="shop image">
-    <div class="card__buttons">
-        <button data-href="" class="card__button card__button_dislike">
-            <%- include dislike.ejs %> Dislike</button>
-        <button data-href="" class="card__button card__button_like">
-            <%- include like.ejs %> Like</button>
-    </div>
-</div>
-<div class="card">
-    <div class="card__title">Shop name</div>
-    <img src="./images/shop1.jpg" alt="shop image">
-    <div class="card__buttons">
-        <button data-href="" class="card__button card__button_dislike">
-            <%- include dislike.ejs %> Dislike</button>
-        <button data-href="" class="card__button card__button_like">
+        <button data-href="/api/shop/like" class="card__button card__button_like">
             <%- include like.ejs %> Like</button>
     </div>
 </div>

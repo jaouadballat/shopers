@@ -1,9 +1,9 @@
 'use strict';
 
 const router = require('express').Router();
-//const favorit = require('../controller/favorit');
+const favorit = require('../controllers/favorit');
 
-router.route('/')
-	.get((req, res) => res.render('favorit'));
+router.route('/:by?')
+	.get(favorit);
 
 module.exports = router;

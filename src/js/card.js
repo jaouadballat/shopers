@@ -64,8 +64,23 @@ class Card {
 			}
 		} else {
 			card.classList.add('card__is-removed');
-			setTimeout(_ => card.classList.add('hidden'), 400)
+			setTimeout(_ => card.classList.add('hidden'), 400);
+
+			const url = current_button.getAttribute('data-href');
+			console.log(url);
 		}
+	}
+
+	_cardStatus(url, card) {
+		const id = card.getAttribute('data-shop');
+		const options = {
+			method: 'PUT',
+			body: {'id': id}
+		};
+
+		fetch(url, options)
+			.then(res => res.json())
+			.then(response => console.log(response));
 	}
 }
 

@@ -2,7 +2,7 @@
 
 const jsonResponse = require('../utils/index').jsonResponse;
 
-module.exports.destroySession = (res, res) => {
+module.exports.destroySession = (req, res) => {
 	//session exists then destroy it.
 	if (req.session) {
 		req.session.destory(err => {

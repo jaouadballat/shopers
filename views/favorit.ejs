@@ -1,13 +1,11 @@
 <%- include _layouts/header.ejs %>
 	<div class="filter">
 		<h3 class="filter__header">Near By Shops</h3>
-		<div class="filter__buttons">
-			<span class="filter__label">Filter by:</span>
-			<a href="#" class="filter__button filter__button_active">Name</a>
-			<a href="#" class="filter__button">Distance</a>
-		</div>
+		<%- include _layouts/filter.ejs %>
 	</div>
 	<div class="card__container">
+		<% shops.forEach(shop => { %>
 		<%- include _layouts/favorit_card.ejs %>
+		<% }) %>
 	</div>
 <%- include _layouts/footer.ejs %>
