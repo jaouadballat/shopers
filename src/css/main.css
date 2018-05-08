@@ -43,6 +43,10 @@ html, body{
     min-width:430px;
 }
 
+body{
+    position:relative;
+}
+
 a {
     background-color: transparent;
     text-decoration:none;
@@ -329,6 +333,17 @@ nav{
     animation: removed-item-animation .33s cubic-bezier(.55,-0.04,.91,.94) forwards;
 }
 
+.page__is-added{
+    animation: add-item-animation .33s cubic-bezier(.55,-0.04,.91,.94) forwards;
+}
+
+.loader{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
 .hidden{display:none;}
 
 @media screen and (max-width: 1000px){
@@ -459,7 +474,7 @@ nav{
     transition:var(--transition);
 }
 
-@keyframes removed-item-animation {
+@keyframes removed-item-animation{
     from{
         opacity:1;
         transform:scale(1);
@@ -468,5 +483,17 @@ nav{
     to{
         opacity:0;
         transform:scale(0);
+    }
+}
+
+@keyframes add-item-animation{
+    from{
+        opacity:0;
+        transform:scale(0.9);
+    }
+ 
+    to{
+        opacity:1;
+        transform:scale(1);
     }
 }

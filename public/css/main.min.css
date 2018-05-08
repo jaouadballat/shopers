@@ -10,6 +10,18 @@
   }
 }
 
+@keyframes add-item-animation {
+  0% {
+    opacity: 0;
+    transform: scale(.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 :root {
   --primary-color: #FFF;
   --secondary-color: #3392ff;
@@ -51,6 +63,10 @@ html {
   outline: 0;
   background: var(--background-color);
   min-width: 430px;
+}
+
+body {
+  position: relative;
 }
 
 a {
@@ -357,6 +373,17 @@ nav {
 
 .card__is-removed {
   animation: removed-item-animation .33s cubic-bezier(.55,-.04,.91,.94) forwards;
+}
+
+.page__is-added {
+  animation: add-item-animation .33s cubic-bezier(.55,-.04,.91,.94) forwards;
+}
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .hidden {

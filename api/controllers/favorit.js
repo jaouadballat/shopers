@@ -19,20 +19,22 @@ module.exports.get = (req, res) => {
 };
 
 module.exports.update = (req, res) => {
+    console.log(req.body);
     const data = req.body;
     const card_id = data.id;
-    if (!card_id) jsonResponse(res, 404, { 'message': 'Not found, id required' });
+    if (!card_id) {jsonResponse(res, 404, { 'message': 'Not found, id required' });}
+    else {
+        Shop.findById(card_id)
+            .select('-liked')
+            .exec((err, card) => {
+                if (!card) { jsonResponse(res, 404, { 'message': 'Card not found' }); }
+                else if (err) { jsonResponse(res, 400, err); }
+                else {card.liked = false;}
 
-    Shop.findById(card_id)
-        .select('-liked')
-        .exec((err, card) => {
-            if (!card) { jsonResponse(res, 404, { 'message': 'Card not found' }); }
-            else if (err) { jsonResponse(res, 400, err); }
-            else {card.liked = false;}
-
-            card.save((err, card) => {
-                if (err) jsonResponse(res, 400, err);
-                else jsonResponse(res, 200, card);
-            })
-        });
+                card.save((err, card) => {
+                    if (err) jsonResponse(res, 400, err);
+                    else jsonResponse(res, 200, card);
+                })
+            });
+    }
 };

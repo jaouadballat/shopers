@@ -27,60 +27,42 @@ class Card {
 
 	_toggleCardButton(current_button, buttons, card) {
 		if (current_button.classList.contains('card__button_dislike')) {
-			if (current_button.classList.contains('card__button_is-disliked')) {
-				current_button.classList.remove('card__button_is-disliked');
-				current_button.querySelector('svg').classList.remove('svg__card_is-disliked');
-			} else {
-				current_button.classList.add('card__button_is-disliked');
-				current_button.querySelector('svg').classList.add('svg__card_is-disliked');
-
-				buttons.forEach(button =>  {
-					if (button !== current_button) {
-						button.classList.remove('card__button_is-liked');
-						button.querySelector('svg').classList.remove('svg__card_is-liked');
-					}
-				});
-
-				//add the feedback to the database
-				const url = current_button.getAttribute('data-href');
-			}
+			this._removeCard(current_button, card, 'disliked');
 		} else if (current_button.classList.contains('card__button_like')) {
-			if (current_button.classList.contains('card__button_is-liked')) {
-				current_button.classList.remove('card__button_is-liked');
-				current_button.querySelector('svg').classList.remove('svg__card_is-liked');
-			} else {
-				current_button.classList.add('card__button_is-liked');
-				current_button.querySelector('svg').classList.add('svg__card_is-liked');
-
-				buttons.forEach(button =>  {
-					if (button !== current_button) {
-						button.classList.remove('card__button_is-disliked');
-						button.querySelector('svg').classList.remove('svg__card_is-disliked');
-					}
-				});
-
-				//add the feedback to the database
-				const url = current_button.getAttribute('data-href');
-			}
+			this._removeCard(current_button, card, 'liked');
 		} else {
-			card.classList.add('card__is-removed');
-			setTimeout(_ => card.classList.add('hidden'), 400);
-
-			const url = current_button.getAttribute('data-href');
-			console.log(url);
+			this._removeCard(current_button, card);
 		}
 	}
 
-	_cardStatus(url, card) {
+	_removeCard(button, card, status) {
+		const url = button.getAttribute('data-href');
+
+		if (status === 'liked') this._cardStatus(url, card, status);
+		else if (status === 'disliked') this._cardStatus(url, card, undefined, status);
+		else this._cardStatus(url, card);
+
+		card.classList.add('card__is-removed');
+		setTimeout(_ => card.classList.add('hidden'), 400);
+	}
+
+	_cardStatus(url, card, like, disliked) {
 		const id = card.getAttribute('data-shop');
+		const data = {
+			'id': id,
+			'like': like || undefined,
+			'disliked': disliked || undefined,
+		}
+
 		const options = {
 			method: 'PUT',
-			body: {'id': id}
+			body: JSON.stringify(data),
+			headers: {'content-type': 'application/json'}
 		};
 
 		fetch(url, options)
-			.then(res => res.json())
-			.then(response => console.log(response));
+		.then(res => res.json())
+		.then(response => console.log(response));
 	}
 }
 

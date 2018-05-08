@@ -10,8 +10,8 @@ module.exports.get = (req, res) => {
 	const sort_by = req.params.by;
 
 	//remove 2 hours from nows date
-	/* const disliked_expired = new Date();
-	disliked_expired.setHours(disliked_expired.getHours() - 2); */
+    /* const disliked_expired = new Date();
+    disliked_expired.setHours(disliked_expired.getHours() - 2); */
 	const disliked = hours.remove();
 
 	Shop.find({
@@ -58,31 +58,28 @@ module.exports.set = (req, res) => {
 module.exports.updateLike = (req, res) => {
 	const data = req.body;
 	const card_id = data.id;
-	if (!card_id) jsonResponse(res, 404, { 'message': 'Not found, id required' });
+	if (!card_id) { jsonResponse(res, 404, { 'message': 'Not found, id required' }); }
+	else {
+		Shop.findById(card_id)
+			.select('-liked')
+			.exec((err, card) => {
+				if (!card) { jsonResponse(res, 404, { 'message': 'Card not found' }); }
+				else if (err) { jsonResponse(res, 400, err); }
+				else {
+					if (data.like !== undefined) {
+						if (card.liked) card.liked = false;
+						else card.liked = true;
+					} else
 
-	Shop.findById(card_id)
-		.select('-liked')
-		.exec((err, card) => {
-			if (!card) { jsonResponse(res, 404, { 'message': 'Card not found' }); }
-			else if (err) { jsonResponse(res, 400, err); }
-			else {
-				if (data.like !== undefined) {
-					if (card.liked) card.liked = false;
-					else card.liked = true;
-				} else 
+						if (data.disliked !== undefined) card.disliked = hours.add();
 
-				if (data.disliked !== undefined) {
-					console.log(new Date());
-					console.log(hours.add())
-					card.disliked = hours.add();
+					card.save((err, card) => {
+						if (err) jsonResponse(res, 400, err);
+						else jsonResponse(res, 200, card);
+					})
 				}
-
-				card.save((err, card) => {
-					if (err) jsonResponse(res, 400, err);
-					else jsonResponse(res, 200, card);
-				})
-			}
-		});
+			});
+	}
 };
 
 module.exports.update = (req, res) => { };

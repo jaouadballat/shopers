@@ -4,18 +4,20 @@
             <%- include logo.ejs %>
             <span class="nav__title">Shopers</span>
         </a>
-        <a href="/" class="nav__tab fetch <% if (page === 'index') {%>nav__tab_current<% } %>">Home</a>
+        <a href="/" class="nav__tab fetch <% if (page === 'index') {%>nav__tab_current<% } %>">Nearby Shops</a>
         <% if (user && user.username) { %>
         <a href="/favorit" class="nav__tab fetch <% if (page === 'favorit') {%>nav__tab_current
-            <% } %>">Favorites</a>
+            <% } %>">My preferred shops</a>
         <% } %>
     </div>
     <div class="nav nav__right">
-        <% if (!user && !user.username) { %>
+        <% if (!user.username) { %>
         <a href="/login" class="nav__tab fetch <% if (page === 'login') {%>nav__tab_current
             <% } %>">LogIn</a>
         <a href="/signup" class="nav__tab fetch <% if (page === 'signup') {%>nav__tab_current
             <% } %>">SignUp</a>
+        <% } else { %>
+        <a href="/api/logout" class="nav__tab">LogOut</a>
         <% } %>
         <%- include menu_icon.ejs %>
     </div>

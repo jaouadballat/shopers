@@ -3,8 +3,6 @@
 const request = require('./request');
 
 module.exports = (req, res) => {
-    console.log(req.session);
-
     let params;
     if (req.params.by !== undefined) params = req.params.by;
     else params = 'name';

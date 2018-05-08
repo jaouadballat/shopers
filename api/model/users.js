@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
 	},
 	passwordConf: {
 	    type: String,
-  	}
+	}
 });
 
 userSchema.statics.authenticate = (email, password, callback) => {

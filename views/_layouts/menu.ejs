@@ -7,12 +7,13 @@
             <% if (user && user.username) { %><%= user.username %><% } %>
         </header>
         <ul class="side-nav__content">
-            <li><a class="fetch" href="./">Home</a></li>
+            <li><a class="fetch" href="/">Nearby Shops</a></li>
             <% if (user && user.username) { %>
-            <li><a class="fetch" href="./favorit">Favorites</a></li>
+            <li><a class="fetch" href="/favorit">My preferred shops</a></li>
+            <li><a href="/api/logout">LogOut</a></li>
             <% } else { %>
-            <li><a class="fetch" href="./login">LogIn</a></li>
-            <li><a class="fetch" href="./signup">SignUp</a></li>
+            <li><a class="fetch" href="/login">LogIn</a></li>
+            <li><a class="fetch" href="/signup">SignUp</a></li>
             <% } %>
         </ul>
     </nav>
