@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title><%= title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#3392ff" />
+
+    <link rel="manifest" href="/manifest.json">
 
     <style>
         <%- include('../public/css/main.min.css') %>
@@ -11,3 +14,4 @@
 <body>
     <%- include nav.ejs %>
     <main class="main">
+        <!-- <% if (messages.info) { %><div class="message"><%= messages.info %></div><%}%> -->

@@ -2,9 +2,9 @@
     <div class="card__title"><%= shop.name%></div>
     <img src="/images/<%= shop.picture %>" alt="<%= shop.name%> image">
     <div class="card__buttons">
-        <button data-href="/api/shop/dislike" class="card__button card__button_dislike">
+        <button data-href="/api/shop/dislike" class="card__button card__button_dislike <% if (!user.username) {%>event<% } %>">
             <%- include dislike.ejs %> Dislike</button>
-        <button data-href="/api/shop/like" class="card__button card__button_like">
+        <button data-href="/api/shop/like" class="card__button card__button_like <% if (!user.username) {%>event<% } %>">
             <%- include like.ejs %> Like</button>
     </div>
 </div>

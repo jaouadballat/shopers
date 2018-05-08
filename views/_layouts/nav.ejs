@@ -1,7 +1,7 @@
 <nav>
     <div class="nav nav__left">
         <a href="/" class="nav__logo fetch">
-            <%- include logo.ejs %>
+            <%- include menu_icon.ejs %>
             <span class="nav__title">Shopers</span>
         </a>
         <a href="/" class="nav__tab fetch <% if (page === 'index') {%>nav__tab_current<% } %>">Nearby Shops</a>
@@ -19,6 +19,5 @@
         <% } else { %>
         <a href="/api/logout" class="nav__tab">LogOut</a>
         <% } %>
-        <%- include menu_icon.ejs %>
     </div>
 </nav>

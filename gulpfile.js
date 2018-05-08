@@ -6,6 +6,7 @@ const concat_js = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
 const minify_css = require('gulp-csso');
 const concat_css = require('gulp-concat-css');
+const workbox_build = require('workbox-build');
 
 gulp.task('css', _ => {
     return gulp.src('src/**/*.css')
@@ -22,7 +23,17 @@ gulp.task('js', _ => {
         .pipe(gulp.dest('public/js'));
 });
 
-gulp.task('default', ['css', 'js'], _ => {
+gulp.task('service-worker', () => {
+    return workbox_build.generateSW({
+        globDirectory: 'public',
+        globPatterns: [
+            '**\/*.{html,json,js,css}',
+        ],
+        swDest: 'public/sw.js',
+    });
+});
+
+gulp.task('default', ['css', 'js', 'service-worker'], _ => {
     gulp.watch('src/**/*.css', _ => gulp.run('css'));
     gulp.watch('src/**/*.js', _=> gulp.run('js'));
 });
