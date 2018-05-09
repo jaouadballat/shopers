@@ -26,13 +26,8 @@ module.exports.userCreate = (req ,res) => {
 
 					user_data.password = hash;
 					User.create(user_data, (err, user) => {
-						if (err) {
-							jsonResponse(res, 400, err);
-						}
-
-						req.session.user_id = user._id;
-						req.session.username = user.username;
-			        	return res.redirect('/');
+						if (err) jsonResponse(res, 400, err);
+						else jsonResponse(res, 200, {'message': 'ok'});
 					});			
 				});
 			});

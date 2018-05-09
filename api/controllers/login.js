@@ -11,14 +11,14 @@ module.exports.userAuthenticate = (req, res) => {
 		User.authenticate(data.email, data.password, (err, user) => {
 			if (err || !user) {
 				jsonResponse(res, 401, {'message': 'Wrong email or password.'});
-				return;
+			} else {
+				const data = {
+					'message': 'ok',
+					'user_id': user._id,
+					'username': user.username
+				};
+				jsonResponse(res, 200, data);
 			}
-
-			req.session.user_id = user._id;
-			req.session.username = user.username;
-
-			//jsonResponse(res, 200, user);
-	        return res.redirect('/');
 		});
 	} else {
 		jsonResponse(res, 400, {'message': 'All fields required.'});
