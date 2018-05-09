@@ -7,8 +7,10 @@ class FetchPage {
         this._container = document.querySelector('.main');
         this._tmp_container = document.querySelector('.tmp');
         this._loader = document.querySelector('.loader');
+        this._cards = Array.from(document.querySelectorAll('.card'));
 
         this._addEventListener();
+        this._refresh(this._cards);
     }
 
     _addEventListener() {
@@ -53,6 +55,20 @@ class FetchPage {
             tabs.forEach(tab => {
                 if (tab !== current_tab) tab.classList.remove('nav__tab_current')
             });
+        }
+    }
+
+    _refresh(cards) {
+        if (cards.length === 0) {
+            fetch('/')
+                .then(res => res.text())
+                .then(response => {
+                    this._loader.classList.remove('hidden');
+                    this._tmp_container.innerHTML = response;
+
+                    this._render(this._tmp_container);
+                    this._loader.classList.add('hidden');
+                });
         }
     }
 }

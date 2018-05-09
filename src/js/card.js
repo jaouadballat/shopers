@@ -48,10 +48,12 @@ class Card {
 
 	_cardStatus(url, card, like, disliked) {
 		const id = card.getAttribute('data-shop');
+		const user_id = card.getAttribute('data-user');
 		const data = {
 			'id': id,
 			'like': like || undefined,
 			'disliked': disliked || undefined,
+			'user_id': user_id
 		}
 
 		const options = {

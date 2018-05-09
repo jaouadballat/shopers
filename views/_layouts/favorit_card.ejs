@@ -1,4 +1,4 @@
-<div class="card" data-shop="<%= shop._id %>">
+<div class="card" data-shop="<%= shop._id %>" data-user="<% if (user.user_id) { %><%= user.user_id %><% } %>">
     <div class="card__title"><%= shop.name %></div>
     <img src="/images/<%= shop.picture %>" alt="<%= shop.name %> image">
     <div class="card__buttons">

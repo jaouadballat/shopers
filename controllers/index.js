@@ -12,7 +12,7 @@ module.exports = (req, res) => {
         url: request.api_options.server + path + '/' + params,
         method: 'GET',
         json: {},
-        qs: {}
+        qs: {'user_id': req.session.user_id}
     };
 
     request.request(request_option, (err, response, body) => {

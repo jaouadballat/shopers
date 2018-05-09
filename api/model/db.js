@@ -7,14 +7,15 @@ let gracefulShutdown;
 mongoose.connect(db_uri);
 var db = mongoose.connection;
 
-// CONNECTION EVENTS
+//connection events
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     console.log('connection ... Ok');
 });
 
-// BRING IN YOUR SCHEMAS & MODELS
+//bring in the schemas and models
 const users = require('./users');
 const shops = require('./shops');
+const favorits = require('./favorits');
 
 module.exports = db;

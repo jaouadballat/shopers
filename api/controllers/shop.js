@@ -2,29 +2,39 @@
 
 const mongoose = require('mongoose');
 const Shop = mongoose.model('Shop');
+const Favorit = mongoose.model('Favorit');
 const jsonResponse = require('../utils/index').jsonResponse;
 const hours = require('../utils/index').hours;
 const file_upload = require('../utils/upload');
 
 module.exports.get = (req, res) => {
 	const sort_by = req.params.by;
+	const user_id = req.query.user_id;
 
-	//remove 2 hours from nows date
-    /* const disliked_expired = new Date();
-    disliked_expired.setHours(disliked_expired.getHours() - 2); */
-	const disliked = hours.remove();
-
-	Shop.find({
-		liked: false
-	})
-		.where('disliked').lt(disliked)
+	Shop.find()
 		.where('deleted').equals(false)
 		.sort(`-${sort_by}`)
 		.select('name picture')
 		.exec((err, shops) => {
 			if (err) { jsonResponse(res, 400, err); }
 			else if (!shops) { jsonResponse(res, 401, { 'message': 'Something went wrong' }); }
-			else { jsonResponse(res, 200, shops) }
+			else {
+				if (user_id) {
+					shops.forEach(shop => Favorit.add(user_id, shop._id));
+
+					const user_shops = [];
+					let counter = 1;
+					shops.filter(shop => {
+						Favorit.filterBy(false, user_id, shop._id, bool => {
+							if (bool) user_shops.push(shop);
+							if (counter === shops.length) jsonResponse(res, 200, user_shops);
+							counter++;
+						});
+					});
+				} else {
+					jsonResponse(res, 200, shops);
+				}
+			}
 		});
 };
 
@@ -58,28 +68,9 @@ module.exports.set = (req, res) => {
 module.exports.updateLike = (req, res) => {
 	const data = req.body;
 	const card_id = data.id;
-	if (!card_id) { jsonResponse(res, 404, { 'message': 'Not found, id required' }); }
-	else {
-		Shop.findById(card_id)
-			.select('-liked')
-			.exec((err, card) => {
-				if (!card) { jsonResponse(res, 404, { 'message': 'Card not found' }); }
-				else if (err) { jsonResponse(res, 400, err); }
-				else {
-					if (data.like !== undefined) {
-						if (card.liked) card.liked = false;
-						else card.liked = true;
-					} else
-
-						if (data.disliked !== undefined) card.disliked = hours.add();
-
-					card.save((err, card) => {
-						if (err) jsonResponse(res, 400, err);
-						else jsonResponse(res, 200, card);
-					})
-				}
-			});
-	}
+	const user_id = data.user_id;
+	if (!card_id) jsonResponse(res, 404, { 'message': 'Not found, id required' });
+	else Favorit.addInteraction(res, user_id, card_id, data, false);
 };
 
 module.exports.update = (req, res) => { };
