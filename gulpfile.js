@@ -33,7 +33,7 @@ gulp.task('service-worker', () => {
     });
 });
 
-gulp.task('default', ['css', 'js', 'service-worker'], _ => {
+gulp.task('default', ['css', 'js'], _ => {
     gulp.watch('src/**/*.css', _ => gulp.run('css'));
     gulp.watch('src/**/*.js', _=> gulp.run('js'));
 });
