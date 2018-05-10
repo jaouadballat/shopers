@@ -4,7 +4,7 @@
   "description": "Browse the shops nearby with ease",
   "main": "app.js",
   "scripts": {
-    "start": "node start ./bin/www",
+    "start": "node ./bin/www",
     "watch": "nodemon ./bin/www"
   },
   "engines": {
