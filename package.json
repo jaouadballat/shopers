@@ -4,8 +4,8 @@
   "description": "Browse the shops nearby with ease",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www",
+    "watch": "nodemon ./bin/www"
   },
   "engines": {
     "node": "~8.9.4",
