@@ -1,7 +1,7 @@
 # shopers: MVC app for browsing nearby shops
 shopers is an MVC app that enables you to look for nearby shops and like or dislike them
 
-This application is based on node's Express Js and the rendering engine ejs
+This application is based on node's Express Js and the rendering engine ejs,
 check it out on [shopers](https://sleepy-mesa-12188.herokuapp.com/)
 
 ## Running Locally
@@ -25,7 +25,7 @@ For development you'll probably want to install the following modules globally:
 
 ### Setting up the database
 
-This is no needs for installing the local MongoDB, the app is using the mlabs free database
+This is no needs for installing the MongoDB module, the app is using the mlabs free database
 check it out [here](https://mlab.com/)
 
 ### Running the application
@@ -43,7 +43,7 @@ To run the application simulating production settings:
 
 To run the deployed app:
 
-	[here](https://sleepy-mesa-12188.herokuapp.com/)
+[here](https://sleepy-mesa-12188.herokuapp.com/)
 
 ## Technical spec
 
@@ -68,8 +68,8 @@ The app is PWA, it works offline, fast and reliable
 
 ## Functional spec
 
-- As a User, you can sign up using my email & password [here](https://sleepy-mesa-12188.herokuapp.com/signup)
-- As a User, you can sign in using my email & password [here](https://sleepy-mesa-12188.herokuapp.com/login)
+- As a User, you can sign up using your email & password, from here [here](https://sleepy-mesa-12188.herokuapp.com/signup)
+- As a User, you can sign in using your email & password, from here [here](https://sleepy-mesa-12188.herokuapp.com/login)
 - As a User, you can display the list of shops sorted by distance, you can also sort by name
 - As a User, you can like a shop, so it can be added to your preferred shops
 	- The liked shops won't be displayed on the main page
@@ -78,7 +78,7 @@ The app is PWA, it works offline, fast and reliable
 
 - As a User, you can dislike a shop, so it won’t be displayed within “Nearby Shops” list during the next 2 hours
 - As a User, you can display the list of preferred shops 
-	-When loged in you can display the list of preferred shops from [here](https://sleepy-mesa-12188.herokuapp.com/favorit)
+	- When loged in you can display the list of preferred shops from [here](https://sleepy-mesa-12188.herokuapp.com/favorit)
 - As a User, you can remove a shop from your preferred shops list
 
 ## License
