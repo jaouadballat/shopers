@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const db_uri = 'mongodb://root:root@ds117010.mlab.com:17010/shopers';
+const db_uri = process.env.MONGOLAB_URI || 'mongodb://root:root@ds117010.mlab.com:17010/shopers';
 let gracefulShutdown;
 
 mongoose.connect(db_uri);
