@@ -24,7 +24,7 @@ class Menu {
         this.transitionEndTime = 0;
 
         this.supportsPassive = undefined;
-        this.addEventListeners();
+        this._addEventListeners();
     }
 
     applyPassive() {
@@ -44,7 +44,7 @@ class Menu {
         return this.applyPassive();
     }
 
-    addEventListeners() {
+    _addEventListeners() {
         this.showButtonEl.addEventListener('click', this.showSideNav);
         this.hideButtonEl.addEventListener('click', this.hideSideNav);
         this.sideNavEl.addEventListener('click', this.hideSideNav);

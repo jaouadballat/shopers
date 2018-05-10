@@ -22,11 +22,6 @@ class Filter {
 		this._buttons.forEach(button => {
 			if (button !== current_button) button.classList.remove(this._active);
 		});
-
-		//get the url and get the page out of it.
-		//then replace the current page content with the new content.
-		const url = current_button.href;
-		//new FetchPage(url, container);
 	}
 }
 

@@ -2,7 +2,7 @@
 
 const request = require('request');
 
-const api_options = { server: 'http://127.0.0.1:3000' };
+const api_options = {server: 'http://127.0.0.1:3000'};
 const render = (page, options, req, res) => res.render(page, options);
 
 if (process.env.NODE_ENV === 'production') {

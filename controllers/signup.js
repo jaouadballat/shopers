@@ -25,7 +25,7 @@ module.exports = {
 
         request.request(request_option, (err, response, body) => {
             if (err) {
-                console.log(err);
+                flashing(req, 'error', err);
                 return;
             }
 

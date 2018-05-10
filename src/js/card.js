@@ -63,8 +63,8 @@ class Card {
 		};
 
 		fetch(url, options)
-		.then(res => res.json())
-		.then(response => console.log(response));
+			.then(res => res.json())
+			.then(response => console.log(response));
 	}
 }
 

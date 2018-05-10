@@ -4,7 +4,7 @@ const gulp = require('gulp');
 const watch = require('gulp-watch');
 const concat_js = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
-const minify_css = require('gulp-csso');
+const minify_css = require('gulp-clean-css');
 const concat_css = require('gulp-concat-css');
 const workbox_build = require('workbox-build');
 
@@ -33,7 +33,9 @@ gulp.task('service-worker', () => {
     });
 });
 
-gulp.task('default', ['css', 'js'], _ => {
-    gulp.watch('src/**/*.css', _ => gulp.run('css'));
-    gulp.watch('src/**/*.js', _=> gulp.run('js'));
+gulp.task('watch', function() {
+  gulp.watch('src/**/*.css', ['css']);
+  gulp.watch('src/**/*.js', ['js']);
 });
+
+gulp.task('default', ['watch', 'css', 'js']);

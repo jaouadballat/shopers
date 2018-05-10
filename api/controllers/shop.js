@@ -16,8 +16,8 @@ module.exports.get = (req, res) => {
 		.sort(`-${sort_by}`)
 		.select('name picture')
 		.exec((err, shops) => {
-			if (err) { jsonResponse(res, 400, err); }
-			else if (!shops) { jsonResponse(res, 401, { 'message': 'Something went wrong' }); }
+			if (err) {jsonResponse(res, 400, err);}
+			else if (!shops) {jsonResponse(res, 401, {'message': 'Something went wrong' });}
 			else {
 				if (user_id) {
 					shops.forEach(shop => Favorit.add(user_id, shop._id));
@@ -58,7 +58,6 @@ module.exports.set = (req, res) => {
 				}, (err, shop) => {
 					if (err) jsonResponse(res, 400, err);
 					else jsonResponse(res, 201, shop);
-					//return res.redirect('/');
 				});
 			}
 		}
@@ -73,5 +72,5 @@ module.exports.updateLike = (req, res) => {
 	else Favorit.addInteraction(res, user_id, card_id, data, false);
 };
 
-module.exports.update = (req, res) => { };
-module.exports.delete = (req, res) => { };
+module.exports.update = (req, res) => {};
+module.exports.delete = (req, res) => {};

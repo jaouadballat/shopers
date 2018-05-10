@@ -25,7 +25,7 @@ module.exports = {
 
         request.request(request_option, (err, response, body) => {
             if (err) {
-                console.log(err);
+                flashing(req, 'error', err);
                 return;
             }
 
@@ -38,7 +38,7 @@ module.exports = {
                 res.redirect('/'); 
             }
             else {
-                flashing(req, 'error', parsed_body.message)
+                flashing(req, 'error', parsed_body.message);
                 res.redirect('login');
             }
         });

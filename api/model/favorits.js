@@ -20,7 +20,9 @@ favoritSchema.statics.filterBy = (status, user_id, shop_id, callback) => {
         if (shop) {
             if (new Date().valueOf() < shop.disliked.valueOf()) callback(false);
             else callback(true);
-        }else {callback(false);}
+        }else {
+            callback(false);
+        }
     });
 };
 
@@ -41,8 +43,8 @@ favoritSchema.statics.addInteraction = (res, user_id, card_id, data, update) => 
     Favorit.findOne({'shop_id': card_id, 'user_id': user_id})
         .select('liked disliked')
         .exec((err, card) => {
-            if (!card) { jsonResponse(res, 404, { 'message': 'Card not found' }); }
-            else if (err) { jsonResponse(res, 400, err); }
+            if (!card) {jsonResponse(res, 404, { 'message': 'Card not found' });}
+            else if (err) {jsonResponse(res, 400, err);}
             else {
                 if (update) {
                     card.liked = false;

@@ -5,7 +5,7 @@ const request = require('./request');
 module.exports = (req, res) => {
     let params;
     if (req.params.by !== undefined) params = req.params.by;
-    else params = 'name';
+    else params = 'distance';
 
     let path = '/api/shop';
     let request_option = {
