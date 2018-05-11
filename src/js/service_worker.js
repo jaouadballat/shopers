@@ -8,8 +8,6 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-
-
 class likesDB {
     constructor() {
         this._db = new Dexie('MyDatabase');
