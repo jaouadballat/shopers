@@ -40,7 +40,6 @@ class FetchPage {
     }
 
     _render(tmp) {
-        console.log(tmp);
         const content = tmp.querySelector('.main');
         this._container.innerHTML = "";
         this._container.appendChild(content);

@@ -22,7 +22,6 @@ const signup = require('./routes/signup');
 
 const app = express();
 
-//app.use(cookieParser());
 app.use(session({
 	secret: 'keyboard cat',
 	resave: true,

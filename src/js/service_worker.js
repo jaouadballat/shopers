@@ -33,7 +33,6 @@ class likesDB {
             .then(results => {
                 if (!results) return;
 
-                console.log(results);
                 results.forEach(result => {
                     const data = {
                         'id': result.id,
@@ -51,7 +50,7 @@ class likesDB {
                     fetch(result.url, options)
                         .then(res => res.json())
                         .then(response => console.log(response))
-                        .catch(err => console.log('What the fuck', err));
+                        .catch(err => console.log(err));
                 });
             })
             .then(_ => this._db.likes.clear());
@@ -141,7 +140,6 @@ function appOffline() {
 
 function linkIsAvailableOffline(link) {
     const url = link.href;
-    console.log(url);
     return caches.match(url)
         .then(res => {
             if (res) {
