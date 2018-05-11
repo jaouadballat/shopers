@@ -40,7 +40,6 @@ html, body{
     font-family:var(--font);
     outline:none;
     background:var(--background-color);
-    min-width:380px;
 }
 
 body{

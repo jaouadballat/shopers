@@ -35,7 +35,8 @@ class FetchPage {
                 this._loader.classList.add('hidden');
 
                 this._setTab(this._tabs, trigger);
-            });
+            })
+            .catch(err => console.log(err));
     }
 
     _render(tmp) {

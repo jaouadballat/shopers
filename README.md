@@ -66,6 +66,11 @@ The app is PWA, it works offline, fast and reliable
 
 ![PWA lighthouse audit](https://github.com/shutsugan/shopers/blob/master/audit.png)
 
+The app is fully interactable offline,
+in offline mode, the user can like and dislike the shops
+the interaction will be preserved, once the app enters online 
+mode the interaction will sync to the service 
+
 ## Functional spec
 
 - As a User, you can sign up using your email & password, from here [here](https://sleepy-mesa-12188.herokuapp.com/signup)
