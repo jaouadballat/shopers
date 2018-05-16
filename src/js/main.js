@@ -23,9 +23,7 @@ class FetchPage {
         event.preventDefault();
         const trigger = event.target
         const url = trigger.href;
-        const options = {
-            credentials: "same-origin"
-        }
+        const options = {credentials: "same-origin"}
 
         fetch(url, options)
             .then(res => res.text())
