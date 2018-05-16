@@ -23,9 +23,11 @@ class FetchPage {
         event.preventDefault();
         const trigger = event.target
         const url = trigger.href;
+        const options = {
+            credentials: "same-origin"
+        }
 
-
-        fetch(url)
+        fetch(url, options)
             .then(res => res.text())
             .then(response => {
                 this._loader.classList.remove('hidden');
