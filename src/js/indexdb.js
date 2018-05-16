@@ -24,7 +24,7 @@ class likesDB {
             .then(likes => likes)
             .then(results => {
                 if (!results) return;
-
+                
                 results.forEach(result => {
                     const data = {
                         'id': result.id,

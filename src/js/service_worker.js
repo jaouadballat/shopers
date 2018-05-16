@@ -8,6 +8,8 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+let lock = false;
+
 if (navigator.onLine) addEventListener('online', _ => appOnline());
 else appOffline();
 
@@ -16,8 +18,14 @@ addEventListener('online', _ => appOnline());
 
 function appOnline() {
     document.body.classList.remove('offline');
-    const likes = new likesDB();
-    likes.get();
+
+    if (lock) {
+        const likes = new likesDB();
+        likes.get();
+        lock = false;
+    } else {
+        lock = true;
+    }
 }
 
 function appOffline() {
